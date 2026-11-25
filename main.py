@@ -12,6 +12,9 @@ ENTRY = "One star. Seated at 9:04, waited 47 minutes for coffee, and the waiter 
 
 
 def main() -> None:
+    assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be a single line"
+    assert 1 <= len(ENTRY) <= 180, "entry must be 1-180 chars"
+    assert len(ENTRY.split()) <= 25, "entry must be at most 25 words"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
